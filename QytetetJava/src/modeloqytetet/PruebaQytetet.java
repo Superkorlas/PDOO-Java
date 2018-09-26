@@ -50,8 +50,7 @@ public class PruebaQytetet {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public static void main(String[] args)  {
        juego.InicializarCartas();
        
        for (Sorpresa it : juego.getMazo()) {
@@ -69,6 +68,11 @@ public class PruebaQytetet {
        for (Sorpresa it : DevuelveTipo(TipoSorpresa.PAGARCOBRAR)) {
            System.out.println(it.toString());
        }
+       
+       // Acciones sobre el tablero
+       juego.InicializarTablero();
+       System.out.println("Información del Tablero:");
+       System.out.println(juego.getTablero().toString());
     }
     
 }
