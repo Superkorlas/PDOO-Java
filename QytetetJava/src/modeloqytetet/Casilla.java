@@ -18,7 +18,7 @@ public class Casilla {
     // Casillas que SI son de tipo CALLE
     public Casilla(int numeroCasilla, TituloPropiedad titulo) {
         this.numeroCasilla = numeroCasilla;
-        tipo = TipoCasilla::CALLE;
+        tipo = TipoCasilla.CALLE;
         this.setTitulo(titulo);
         coste = titulo.getPrecioCompra();
     }
@@ -53,7 +53,7 @@ public class Casilla {
 
     @Override
     public String toString() {
-        if (tipo == TipoCasilla::CALLE) {
+        if (tipo == TipoCasilla.CALLE) {
             return "Casilla{" + "numeroCasilla=" + numeroCasilla + ", coste=" + coste + ", tipo=" + tipo + ", titulo=" + titulo + '}';
         } else {
             return "Casilla{" + "numeroCasilla=" + numeroCasilla + ", coste=" + coste + ", tipo=" + tipo + '}';

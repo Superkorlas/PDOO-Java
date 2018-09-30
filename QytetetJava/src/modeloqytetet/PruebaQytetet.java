@@ -70,7 +70,7 @@ public class PruebaQytetet {
        }
        
        // Acciones sobre el tablero
-       juego.InicializarTablero();
+       juego.inicializarTablero();
        System.out.println("Información del Tablero:");
        System.out.println(juego.getTablero().toString());
     }

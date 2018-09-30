@@ -12,6 +12,15 @@ import java.util.ArrayList;
  */
 public class Qytetet {
     private ArrayList<Sorpresa> mazo = new ArrayList<>();
+    private Tablero tablero;    
+    
+    public Tablero getTablero() {
+        return tablero;
+    }
+    
+    private void inicializarTablero(){
+        this.tablero=new Tablero();
+    }
 
     protected ArrayList<Sorpresa> getMazo() {
         return mazo;
@@ -19,7 +28,7 @@ public class Qytetet {
     
     protected void InicializarCartas() {
         mazo.add(new Sorpresa("De vuelta al pricipio, vuelves a la casilla de salida", 0, TipoSorpresa.IRACASILLA));
-        mazo.add(new Sorpresa("Que suerte, te vas a la carcel", 0, TipoSorpresa.IRACASILLA));
+        mazo.add(new Sorpresa("Que suerte, te vas a la carcel", tablero.getCarcel().getNumeroCasilla(), TipoSorpresa.IRACASILLA));
         mazo.add(new Sorpresa("Poca broma, te vas a la ultima casilla del juego", 0, TipoSorpresa.IRACASILLA));
         mazo.add(new Sorpresa("Felicidades maquina, recibes dinero de todos por tu cumple", 50, TipoSorpresa.PAGARCOBRAR));
         mazo.add(new Sorpresa("Vaya, te toca pagar a todos por moroso", 100, TipoSorpresa.PAGARCOBRAR));

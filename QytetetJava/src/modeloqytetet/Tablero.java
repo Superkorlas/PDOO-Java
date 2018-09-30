@@ -28,7 +28,7 @@ public class Tablero {
          * Si es de tipo CALLE, crear también su correspondiente Titulo.
          * Hacer que carcel apunte a la casilla de carcel.
          */
-        Casilla casillaSalida = new Casilla(0, TipoCasilla::SALIDA);
+        Casilla casillaSalida = new Casilla(0, TipoCasilla.SALIDA);
         casillas.add(casillaSalida);
         /* ... */
         
