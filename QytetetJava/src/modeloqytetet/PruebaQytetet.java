@@ -52,8 +52,9 @@ public class PruebaQytetet {
      */
     public static void main(String[] args)  {
         // Inicilizaciones
-       juego.InicializarTablero();
-       juego.InicializarCartas();
+        juego.Inicializar();
+        //juego.InicializarTablero();
+        //juego.InicializarCartas();
        
        for (Sorpresa it : juego.getMazo()) {
            System.out.println(it.toString());

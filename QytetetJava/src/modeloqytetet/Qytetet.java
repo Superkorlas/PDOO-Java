@@ -12,13 +12,18 @@ import java.util.ArrayList;
  */
 public class Qytetet {
     private ArrayList<Sorpresa> mazo = new ArrayList<>();
-    private Tablero tablero;    
+    private Tablero tablero;
+
+    public void Inicializar() {
+        InicializarTablero();
+        InicializarCartas();
+    }
     
     public Tablero getTablero() {
         return tablero;
     }
     
-     void InicializarTablero(){
+    private void InicializarTablero(){
         this.tablero=new Tablero();
     }
 

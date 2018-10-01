@@ -30,7 +30,32 @@ public class Tablero {
          */
         Casilla casillaSalida = new Casilla(0, TipoCasilla.SALIDA);
         casillas.add(casillaSalida);
-        carcel = new Casilla(1, TipoCasilla.CARCEL);
+        
+        TituloPropiedad tituloPropiedadCalle = new TituloPropiedad("", 0, 0, 0.0f, 0, 0);
+        Casilla casillaCalle = new Casilla(1, tituloPropiedadCalle);
+        casillas.add(casillaCalle);
+        
+        Casilla casillaCarcel = new Casilla(5, TipoCasilla.CARCEL);
+        casillas.add(casillaCarcel);
+        carcel = casillaCarcel;
+        
+        Casilla casillaSorpresa = new Casilla(7, TipoCasilla.SORPRESA);
+        casillas.add(casillaSorpresa);
+        
+        Casilla casillaParking = new Casilla(10, TipoCasilla.PARKING);
+        casillas.add(casillaParking);
+        
+        Casilla casillaImpuesto = new Casilla(12, TipoCasilla.IMPUESTO);
+        casillas.add(casillaImpuesto);
+        
+        Casilla casillaSorpresa2 = new Casilla(13, TipoCasilla.SORPRESA);
+        casillas.add(casillaSorpresa2);
+        
+        Casilla casillaJuez = new Casilla(15, TipoCasilla.JUEZ);
+        casillas.add(casillaJuez);
+        
+        Casilla casillaSorpresa3 = new Casilla(18, TipoCasilla.SORPRESA);
+        casillas.add(casillaSorpresa3);
         /* ... */
         
                 
