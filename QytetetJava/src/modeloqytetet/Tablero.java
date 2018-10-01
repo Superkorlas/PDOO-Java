@@ -30,6 +30,7 @@ public class Tablero {
          */
         Casilla casillaSalida = new Casilla(0, TipoCasilla.SALIDA);
         casillas.add(casillaSalida);
+        carcel = new Casilla(1, TipoCasilla.CARCEL);
         /* ... */
         
                 

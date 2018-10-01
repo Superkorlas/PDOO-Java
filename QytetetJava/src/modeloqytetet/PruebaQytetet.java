@@ -51,6 +51,8 @@ public class PruebaQytetet {
      * @param args the command line arguments
      */
     public static void main(String[] args)  {
+        // Inicilizaciones
+       juego.InicializarTablero();
        juego.InicializarCartas();
        
        for (Sorpresa it : juego.getMazo()) {
@@ -70,7 +72,6 @@ public class PruebaQytetet {
        }
        
        // Acciones sobre el tablero
-       juego.inicializarTablero();
        System.out.println("Información del Tablero:");
        System.out.println(juego.getTablero().toString());
     }

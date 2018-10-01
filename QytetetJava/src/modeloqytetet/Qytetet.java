@@ -18,7 +18,7 @@ public class Qytetet {
         return tablero;
     }
     
-    private void inicializarTablero(){
+     void InicializarTablero(){
         this.tablero=new Tablero();
     }
 
