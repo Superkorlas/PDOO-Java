@@ -46,7 +46,7 @@ public class Tablero {
 
     @Override
     public String toString() {
-        return "Tablero{" + "casillas=" + casillas + ", carcel=" + carcel + '}';
+        return "Tablero - " + "Casillas:\n" + casillas + carcel + '}';
     }
     
 }

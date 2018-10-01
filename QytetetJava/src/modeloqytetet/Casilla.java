@@ -54,9 +54,9 @@ public class Casilla {
     @Override
     public String toString() {
         if (tipo == TipoCasilla.CALLE) {
-            return "Casilla{" + "numeroCasilla=" + numeroCasilla + ", coste=" + coste + ", tipo=" + tipo + ", titulo=" + titulo + '}';
+            return "\nCasilla{" + "tipo=" + tipo + ", numeroCasilla=" + numeroCasilla + ", coste=" + coste + ", titulo=" + titulo + "}";
         } else {
-            return "Casilla{" + "numeroCasilla=" + numeroCasilla + ", tipo=" + tipo + '}';
+            return "\nCasilla{" + "tipo=" + tipo + ", numeroCasilla=" + numeroCasilla + "}";
         }
     }
     
