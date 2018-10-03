@@ -7,13 +7,43 @@ package modeloqytetet;
 
 import java.util.ArrayList;
 
-
 /**
  *
  * @author alejandro
  */
 public class PruebaQytetet {
     static Qytetet juego = Qytetet.getInstance();
+    
+        /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args)  {
+        // Inicilizaciones
+        juego.Inicializar();
+        //juego.InicializarTablero();
+        //juego.InicializarCartas();
+
+/*
+       for (Sorpresa it : juego.getMazo()) {
+           System.out.println(it.toString());
+       }
+       
+       for (Sorpresa it : Mayor0()) {
+           System.out.println(it.toString());
+       }
+              
+       for (Sorpresa it : TipoIrCasilla()) {
+           System.out.println(it.toString());
+       }
+                     
+       for (Sorpresa it : DevuelveTipo(TipoSorpresa.PAGARCOBRAR)) {
+           System.out.println(it.toString());
+       }
+*/
+       // Acciones sobre el tablero
+       System.out.println("Información del Tablero:");
+       System.out.println(juego.getTablero().toString());
+    }
 
     static private ArrayList<Sorpresa> Mayor0(){
        ArrayList<Sorpresa> resultado = new ArrayList<>();
@@ -46,35 +76,5 @@ public class PruebaQytetet {
            }
        }
        return resultado;
-    }
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args)  {
-        // Inicilizaciones
-        juego.Inicializar();
-        //juego.InicializarTablero();
-        //juego.InicializarCartas();
-       
-       for (Sorpresa it : juego.getMazo()) {
-           System.out.println(it.toString());
-       }
-       
-       for (Sorpresa it : Mayor0()) {
-           System.out.println(it.toString());
-       }
-              
-       for (Sorpresa it : TipoIrCasilla()) {
-           System.out.println(it.toString());
-       }
-                     
-       for (Sorpresa it : DevuelveTipo(TipoSorpresa.PAGARCOBRAR)) {
-           System.out.println(it.toString());
-       }
-       
-       // Acciones sobre el tablero
-       System.out.println("Información del Tablero:");
-       System.out.println(juego.getTablero().toString());
-    }
-    
+    }    
 }

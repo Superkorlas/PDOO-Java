@@ -14,8 +14,27 @@ public class Qytetet {
     private static final Qytetet instance = new Qytetet();
     private ArrayList<Sorpresa> mazo = new ArrayList<>();
     private Tablero tablero;
+    public static int MAX_JUGADORES;
+    static int NUM_SORPRESAS;
+    public static int NUM_CASILLAS;
+    static int PRECIO_LIBERTAD;
+    static int SALDO_SALIDA;
+    Sorpresa cartaActual;
+    ArrayList<Jugador> jugadores;
+    Jugador jugadorActual;
+    Dado dado;
     
-    private Qytetet(){}
+    private Qytetet(){
+        MAX_JUGADORES = 4;
+        NUM_SORPRESAS = 10;
+        NUM_CASILLAS = 20;
+        PRECIO_LIBERTAD = 200;
+        SALDO_SALIDA = 1000;
+        cartaActual = null;
+        dado = null;
+        jugadorActual = null;
+        jugadores = null;
+    }
     
     public static Qytetet getInstance(){
         return instance;
@@ -26,16 +45,146 @@ public class Qytetet {
         InicializarCartas();
     }
     
-    public Tablero getTablero() {
-        return tablero;
+    void actuarSiEnCasillaEdificable() {
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    void actuarSiEnCasillaNoEdificable() {
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    public void aplicarSorpresa() {
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    public boolean cancelarHipoteca(int numeroCasilla) {
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    public boolean comprarTituloPropiedad() {
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    public boolean edificarCasa(int numeroCasilla) {
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    public boolean edificarHotel(int numeroCasilla) {
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    private void encarcelarJugador() {
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    public Sorpresa getCartaActual() {
+        return cartaActual;
+    }
+    
+    Dado getDado() {
+        return dado;
+    }
+    
+    Jugador getJugadorActual(){
+        return jugadorActual;
+    }
+    
+    public ArrayList<Jugador> getJugadores(){
+        return jugadores;
+    }
+    
+    ArrayList<Sorpresa> getMazo(){
+        return mazo;
+    }
+    
+    public int getValorDado() {
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    public void hipotecarPropiedad(int numeroCasilla) {
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    private void inicializarCartasSorpresa() {
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    public void inicializarJuego(ArrayList<String> nombres) {
+        throw new UnsupportedOperationException("Sin implementar");
+    }   
+    
+    private void inicializarJugadores(ArrayList<String> nombres) {
+        throw new UnsupportedOperationException("Sin implementar");
     }
     
     private void InicializarTablero(){
         this.tablero=new Tablero();
     }
+    
+    public boolean intentarSalirCarcel(MetodoSalirCarcel metodo) {
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    public void jugar() {
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    void mover(int numCasillaDestino) {
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    public Casilla obtenerCasillaJugadorActual() {
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    public ArrayList<Casilla> obtenerCasillasTablero() {
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    public ArrayList<Integer> obtenerPropiedadesJugador() {
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    public ArrayList<Integer> obtenerPropiedadesJugadorSegunEstadoHipoteca(boolean estadoHipoteca) {
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    public void obtenerRanking() {
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    public int obtenerSaldoJugadorActual() {
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    private void salidaJugadores() {
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    private void setCartaActual(Sorpresa cartaActual) {
+        this.cartaActual = cartaActual;
+    }
+    
+    public void siguienteJugador() {
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    int tirarDado() {
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    public boolean venderPropiedad(int numeroCasilla) {
+        throw new UnsupportedOperationException("Sin implementar");
+    }
 
-    protected ArrayList<Sorpresa> getMazo() {
-        return mazo;
+    @Override
+    public String toString() {
+        return "\nQytetet{" + "mazo=" + mazo + ", tablero=" + tablero + ", cartaActual=" + cartaActual + ", jugadores=" + jugadores + ", jugadorActual=" + jugadorActual + ", dado=" + dado + '}';
+    }
+    
+    // No salen en el guión exactamente así ----------------------------------------------
+    public Tablero getTablero() {
+        return tablero;
     }
     
     protected void InicializarCartas() {

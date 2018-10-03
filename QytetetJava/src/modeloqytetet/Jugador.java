@@ -69,15 +69,15 @@ public class Jugador {
     }
     
     Sorpresa getCartaLibertad(){
-        throw new UnsupportedOperationException("Sin implementar");
+        return cartaLibertad;
     }
     
     Casilla getCasillaActual(){
-        throw new UnsupportedOperationException("Sin implementar");
+        return casillaActual;
     }
     
     boolean getEncarcelado(){
-        throw new UnsupportedOperationException("Sin implementar");
+        return encarcelado;
     }
     
     String getNombre(){
@@ -125,14 +125,8 @@ public class Jugador {
         throw new UnsupportedOperationException("Sin implementar");
     }
     
-  /*
-    public void setAttribute(attribute){
-        throw new UnsupportedOperationException("Sin implementar");
-    }
-  */
-    
     void setCartaLibertad(Sorpresa carta){
-        throw new UnsupportedOperationException("Sin implementar");
+        this.cartaLibertad = carta;
     }
     
     void setCasillaActual(Casilla casilla){
@@ -141,18 +135,6 @@ public class Jugador {
     
     void setEncarcelado(boolean encarcelado /* = false*/){
         this.encarcelado = encarcelado;
-    }
-    
-    void setEncarceladoSinPoderSalir(boolean encarceladoSinPoderSalir /* = true*/){
-        throw new UnsupportedOperationException("Sin implementar");
-    }
-    
-    public void setHaTiradoDado(boolean haTiradoDado /* = true*/){
-        throw new UnsupportedOperationException("Sin implementar");
-    }
-    
-    void setSaldo(int saldo){
-        this.saldo = saldo;
     }
     
     boolean tengoCartaLibertad(){

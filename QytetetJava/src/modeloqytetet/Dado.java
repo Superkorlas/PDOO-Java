@@ -28,4 +28,10 @@ public class Dado {
     public int getValor() {
         return valor;
     }
+    
+    @Override
+    public String toString() {
+        return "\nDado{" + "valor=" + valor + '}';
+    }
+    
 }

@@ -105,7 +105,7 @@ public class TituloPropiedad {
     }
     
     Jugador getPropietario(){
-        throw new UnsupportedOperationException("Sin implementar");
+        return propietario;
     }
 
     
@@ -126,7 +126,7 @@ public class TituloPropiedad {
     }
     
     void setPropietario(Jugador propietario){
-        throw new UnsupportedOperationException("Sin implementar");
+        this.propietario = propietario;
     }
 
     
