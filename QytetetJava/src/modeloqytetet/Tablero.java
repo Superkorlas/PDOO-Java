@@ -15,7 +15,7 @@ public class Tablero {
     private ArrayList<Casilla> casillas;
     private Casilla carcel;
 
-    public Tablero() {
+    Tablero() {
         Inicializar();
     }
     
@@ -104,15 +104,27 @@ public class Tablero {
         
                 
     }
-
-    public ArrayList<Casilla> getCasillas() {
-        return casillas;
+    
+    boolean EsCasillaCarcel(int numeroCasilla) {
+        return (carcel.getNumeroCasilla() == numeroCasilla);
     }
 
-    public Casilla getCarcel() {
+    Casilla getCarcel() {
         return carcel;
     }
+    
+    ArrayList<Casilla> getCasillas() {
+        return casillas;
+    }
+    
+    Casilla ObtenerCasillaFinal(Casilla casilla, int desplazamiento) {
+        throw new UnsupportedOperationException("Sin implementar");
+    }
 
+    Casilla ObtenerCasillaNumero (int numeroCasilla /* = casillaFinal*/) {
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
     @Override
     public String toString() {
         return "Tablero - " + "Casillas:\n" + casillas + carcel + '}';

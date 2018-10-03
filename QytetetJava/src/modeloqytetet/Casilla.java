@@ -16,7 +16,7 @@ public class Casilla {
     private TituloPropiedad titulo;
     
     // Casillas que SI son de tipo CALLE
-    public Casilla(int numeroCasilla, TituloPropiedad titulo) {
+    Casilla(int numeroCasilla, TituloPropiedad titulo) {
         this.numeroCasilla = numeroCasilla;
         tipo = TipoCasilla.CALLE;
         this.setTitulo(titulo);
@@ -24,31 +24,52 @@ public class Casilla {
     }
     
     // Casillas que NO son de tipo CALLE
-    public Casilla(int numeroCasilla, TipoCasilla tipo) {
+    Casilla(int numeroCasilla, TipoCasilla tipo) {
         this.numeroCasilla = numeroCasilla;
         coste = -1;
         this.tipo = tipo;
         this.titulo = null;
     }
+    
+    TituloPropiedad AsignarPropietario (Jugador jugador) {
+        throw new UnsupportedOperationException("Sin implementar");
+    }
 
-    public int getNumeroCasilla() {
+    
+    int getCoste() {
+        return coste;
+    }
+    
+    int getNumeroCasilla() {
         return numeroCasilla;
     }
 
-    public int getCoste() {
-        return coste;
-    }
-
-    public TipoCasilla getTipo() {
+    TipoCasilla getTipo() {
         return tipo;
     }
 
-    public TituloPropiedad getTitulo() {
+    TituloPropiedad getTitulo() {
         return titulo;
+    }
+    
+    int pagarAlquiler() {
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    boolean propietarioEncarcelado() {
+        throw new UnsupportedOperationException("Sin implementar");
     }
 
     private void setTitulo(TituloPropiedad titulo) {
         this.titulo = titulo;
+    }
+    
+    boolean soyEdificable(){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    boolean tengoPropietario(){
+        throw new UnsupportedOperationException("Sin implementar");
     }
 
     @Override

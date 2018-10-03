@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * @author alejandro
  */
 public class PruebaQytetet {
-    static Qytetet juego = new Qytetet();
+    static Qytetet juego = Qytetet.getInstance();
 
     static private ArrayList<Sorpresa> Mayor0(){
        ArrayList<Sorpresa> resultado = new ArrayList<>();

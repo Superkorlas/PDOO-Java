@@ -11,8 +11,15 @@ import java.util.ArrayList;
  * @author alejandro
  */
 public class Qytetet {
+    private static final Qytetet instance = new Qytetet();
     private ArrayList<Sorpresa> mazo = new ArrayList<>();
     private Tablero tablero;
+    
+    private Qytetet(){}
+    
+    public static Qytetet getInstance(){
+        return instance;
+    }
 
     public void Inicializar() {
         InicializarTablero();

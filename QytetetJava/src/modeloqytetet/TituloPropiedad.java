@@ -10,17 +10,18 @@ package modeloqytetet;
  * @author robin
  */
 public class TituloPropiedad {
-    private String nombre;
-    private boolean hipotecada;
-    private int precioCompra;
     private int alquilerBase;
     private float factorRevalorizacion;
     private int hipotecaBase;
-    private int precioEdificar;
-    private int numHoteles;
+    private boolean hipotecada;
+    private String nombre;
     private int numCasas;
+    private int numHoteles;
+    private int precioCompra;
+    private int precioEdificar;
+    private Jugador propietario;
 
-    public TituloPropiedad(String nombre, int precioCompra, int alquilerBase, float factorRevalorizacion, int hipotecaBase, int precioEdificar) {
+    TituloPropiedad(String nombre, int precioCompra, int alquilerBase, float factorRevalorizacion, int hipotecaBase, int precioEdificar) {
         this.nombre = nombre;
         this.precioCompra = precioCompra;
         this.alquilerBase = alquilerBase;
@@ -31,48 +32,108 @@ public class TituloPropiedad {
         this.hipotecada=false;
         this.numCasas=0;
         this.numHoteles=0;
+        
+        this.propietario = null;
     }
 
-    public String getNombre() {
-        return nombre;
+    int calcularCosteCancelar() {
+        throw new UnsupportedOperationException("Sin implementar");
     }
-
-    public boolean isHipotecada() {
-        return hipotecada;
+    
+    int calcularCosteHipotecar() {
+        throw new UnsupportedOperationException("Sin implementar");
     }
-
-    public int getPrecioCompra() {
-        return precioCompra;
+    
+    int calcularImporteAlquiler() {
+        throw new UnsupportedOperationException("Sin implementar");
     }
-
-    public int getAlquilerBase() {
+    
+    int calcularPrecioVenta(){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    void cancelarHipoteca(){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    void cobrarAlquiler(int coste){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    void edificarCasa(){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    void edificarHotel(){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    int getAlquilerBase() {
         return alquilerBase;
     }
 
-    public float getFactorRevalorizacion() {
+    float getFactorRevalorizacion() {
         return factorRevalorizacion;
     }
 
-    public int getHipotecaBase() {
+    int getHipotecaBase() {
         return hipotecaBase;
     }
 
-    public int getPrecioEdificar() {
-        return precioEdificar;
+    boolean getHipotecada() {
+        return hipotecada;
     }
 
-    public int getNumHoteles() {
-        return numHoteles;
+    String getNombre() {
+        return nombre;
     }
 
-    public int getNumCasas() {
+    int getNumCasas() {
         return numCasas;
     }
 
-    public void setHipotecada(boolean hipotecada) {
-        this.hipotecada = hipotecada;
+    int getNumHoteles() {
+        return numHoteles;
     }
 
+    int getPrecioCompra() {
+        return precioCompra;
+    }
+
+    int getPrecioEdificar() {
+        return precioEdificar;
+    }
+    
+    Jugador getPropietario(){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+
+    
+    int hipotecar(){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    int pagarAlquiler(){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    boolean propietarioEncarcelado(){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
+    void setHipotecada(boolean hipotecada) {
+        this.hipotecada = hipotecada;
+    }
+    
+    void setPropietario(Jugador propietario){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+
+    
+    boolean tengoPropietario(){
+        throw new UnsupportedOperationException("Sin implementar");
+    }
+    
     @Override
     public String toString() {
         return "TituloPropiedad{" + "nombre=" + nombre + ", hipotecada=" + hipotecada + ", precioCompra=" + precioCompra + ", alquilerBase=" + alquilerBase + ", factorRevalorizacion=" + factorRevalorizacion + ", hipotecaBase=" + hipotecaBase + ", precioEdificar=" + precioEdificar + ", numHoteles=" + numHoteles + ", numCasas=" + numCasas + '}';
