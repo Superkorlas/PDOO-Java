@@ -127,7 +127,7 @@ public class Tablero {
     
     @Override
     public String toString() {
-        return "Tablero - " + "Casillas:\n" + casillas + carcel + '}';
+        return "Tablero={" + "Casillas:\n\t" + casillas + carcel + '}';
     }
     
 }

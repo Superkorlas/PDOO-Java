@@ -33,17 +33,18 @@ public class Qytetet {
         cartaActual = null;
         dado = null;
         jugadorActual = null;
-        jugadores = null;
+        jugadores = new ArrayList<>();
     }
     
     public static Qytetet getInstance(){
         return instance;
     }
 
-    public void Inicializar() {
+    //Ya existe el metodo inicializarJuego para esto, lo dejo comentado por ahora por si acaso
+    /*public void Inicializar() {
         InicializarTablero();
         InicializarCartas();
-    }
+    }*/
     
     void actuarSiEnCasillaEdificable() {
         throw new UnsupportedOperationException("Sin implementar");
@@ -105,19 +106,20 @@ public class Qytetet {
         throw new UnsupportedOperationException("Sin implementar");
     }
     
-    private void inicializarCartasSorpresa() {
-        throw new UnsupportedOperationException("Sin implementar");
-    }
-    
     public void inicializarJuego(ArrayList<String> nombres) {
-        throw new UnsupportedOperationException("Sin implementar");
+        inicializarJugadores(nombres);
+        inicializarTablero();
+        inicializarCartasSorpresa();        
     }   
     
     private void inicializarJugadores(ArrayList<String> nombres) {
-        throw new UnsupportedOperationException("Sin implementar");
+        for (String nombre : nombres) {
+            Jugador j= new Jugador(nombre);
+            jugadores.add(j);
+        }
     }
     
-    private void InicializarTablero(){
+    private void inicializarTablero(){
         this.tablero=new Tablero();
     }
     
@@ -177,9 +179,10 @@ public class Qytetet {
         throw new UnsupportedOperationException("Sin implementar");
     }
 
+    //Aniadidos algunos \n
     @Override
     public String toString() {
-        return "\nQytetet{" + "mazo=" + mazo + ", tablero=" + tablero + ", cartaActual=" + cartaActual + ", jugadores=" + jugadores + ", jugadorActual=" + jugadorActual + ", dado=" + dado + '}';
+        return "\nQytetet{\n" + "\tmazo=" + mazo + "\n\ttablero=" + tablero + "\n\tcartaActual=" + cartaActual + "\n\tjugadores=" + jugadores + "\n\tjugadorActual=" + jugadorActual + "\n\tdado=" + dado + '}';
     }
     
     // No salen en el guión exactamente así ----------------------------------------------
@@ -187,7 +190,10 @@ public class Qytetet {
         return tablero;
     }
     
-    protected void InicializarCartas() {
+    /*  Cambiado el nombre, el guion de la p1 no se corresponde con el de la p2 en algunas cosas: 
+     *      InicializarCartas -> inicializarCartasSorpresa
+     */
+    protected void inicializarCartasSorpresa() {
         mazo.add(new Sorpresa("De vuelta al pricipio, vuelves a la casilla de salida", 0, TipoSorpresa.IRACASILLA));
         mazo.add(new Sorpresa("Que suerte, te vas a la carcel", tablero.getCarcel().getNumeroCasilla(), TipoSorpresa.IRACASILLA));
         mazo.add(new Sorpresa("Poca broma, te vas a la ultima casilla del juego", 0, TipoSorpresa.IRACASILLA));

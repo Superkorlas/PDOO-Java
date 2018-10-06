@@ -23,7 +23,7 @@ public class Jugador {
         this.nombre = nombre;
         encarcelado = false;
         saldo = 7500;
-        propiedades = new ArrayList();
+        propiedades = new ArrayList<>();
         cartaLibertad = null;
         // HAY QUE INICIALIZAR casillaActual!!!!
     }
