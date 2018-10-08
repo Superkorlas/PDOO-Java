@@ -39,12 +39,6 @@ public class Qytetet {
     public static Qytetet getInstance(){
         return instance;
     }
-
-    //Ya existe el metodo inicializarJuego para esto, lo dejo comentado por ahora por si acaso
-    /*public void Inicializar() {
-        InicializarTablero();
-        InicializarCartas();
-    }*/
     
     void actuarSiEnCasillaEdificable() {
         throw new UnsupportedOperationException("Sin implementar");
