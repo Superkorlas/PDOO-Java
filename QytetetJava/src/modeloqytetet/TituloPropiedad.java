@@ -118,7 +118,7 @@ public class TituloPropiedad {
     }
     
     boolean propietarioEncarcelado(){
-        throw new UnsupportedOperationException("Sin implementar");
+        return propietario.encarcelado;
     }
     
     void setHipotecada(boolean hipotecada) {
@@ -131,7 +131,7 @@ public class TituloPropiedad {
 
     
     boolean tengoPropietario(){
-        throw new UnsupportedOperationException("Sin implementar");
+        return propietario != null;
     }
     
     @Override

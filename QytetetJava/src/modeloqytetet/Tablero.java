@@ -118,11 +118,11 @@ public class Tablero {
     }
     
     Casilla ObtenerCasillaFinal(Casilla casilla, int desplazamiento) {
-        throw new UnsupportedOperationException("Sin implementar");
+        return casillas.get((casilla.getNumeroCasilla() + desplazamiento)%casillas.size());
     }
 
     Casilla ObtenerCasillaNumero (int numeroCasilla /* = casillaFinal*/) {
-        throw new UnsupportedOperationException("Sin implementar");
+        return casillas.get(numeroCasilla);
     }
     
     @Override

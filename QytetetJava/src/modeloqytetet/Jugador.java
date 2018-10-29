@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author Superkorlas
  */
-public class Jugador {
+public class Jugador implements Comparable {
     boolean encarcelado;
     String nombre;
     int saldo;
@@ -25,7 +25,13 @@ public class Jugador {
         saldo = 7500;
         propiedades = new ArrayList<>();
         cartaLibertad = null;
-        // HAY QUE INICIALIZAR casillaActual!!!!
+        casillaActual = null;
+    }
+    
+    @Override
+    public int compareTo(Object otroJugador){
+        int otroCapital = ((Jugador) otroJugador).obtenerCapital();
+        return otroCapital - this.obtenerCapital();
     }
     
     boolean cancelarHipoteca(TituloPropiedad titulo){
@@ -37,7 +43,12 @@ public class Jugador {
     }
     
     int cuantasCasasHotelTengo(){
-        throw new UnsupportedOperationException("Sin implementar");
+        int numCasHot = 0;
+        for(TituloPropiedad pr: propiedades){
+            numCasHot += pr.getNumCasas() + pr.getNumHoteles();
+        }
+        
+        return numCasHot;
     }
     
     boolean deboPagarAlquiler(){
@@ -45,7 +56,10 @@ public class Jugador {
     }
     
     Sorpresa devolverCartaLibertad(){
-        throw new UnsupportedOperationException("Sin implementar");
+        Sorpresa cartaDevuelta = this.cartaLibertad;
+        this.cartaLibertad = null;
+        
+        return cartaDevuelta;
     }
     
     boolean edificarCasa(TituloPropiedad titulo){
@@ -61,7 +75,11 @@ public class Jugador {
     }
     
     private boolean esDeMiPropiedad(TituloPropiedad titulo){
-        throw new UnsupportedOperationException("Sin implementar");
+        for( TituloPropiedad ti: this.propiedades){
+            if(ti == titulo)
+                return true;
+        }
+        return false;
     }
     
     boolean estoyEnCalleLibre(){
@@ -101,16 +119,32 @@ public class Jugador {
     }
     
     int modificarSaldo(int cantidad){
-        throw new UnsupportedOperationException("Sin implementar");
+        saldo += cantidad;
+        return saldo;
     }
     
     int obtenerCapital(){
-        throw new UnsupportedOperationException("Sin implementar");
+        int capital = getSaldo();
+        for(TituloPropiedad pr: propiedades){
+            capital += pr.getPrecioEdificar()*(pr.getPrecioCompra() + pr.getNumCasas() + pr.getNumHoteles());
+        }
+        return capital;
     }
     
         
     ArrayList<TituloPropiedad> obtenerPropiedades(boolean hipotecada){
-        throw new UnsupportedOperationException("Sin implementar");
+        ArrayList<TituloPropiedad> resultado = new ArrayList<>();
+        
+        for(TituloPropiedad ti: propiedades){
+            if(hipotecada && ti.getHipotecada()){
+                resultado.add(ti);
+            }
+            else if(!hipotecada && !ti.getHipotecada()){
+                resultado.add(ti);
+            }
+        }
+        
+        return resultado;
     }
     
     void pagarAlquiler(){
@@ -118,7 +152,7 @@ public class Jugador {
     }
     
     void pagarImpuesto(){
-        throw new UnsupportedOperationException("Sin implementar");
+        saldo -= casillaActual.getCoste();
     }
     
     void pagarLibertad(int cantidad){
@@ -133,12 +167,16 @@ public class Jugador {
         this.casillaActual = casilla;
     }
     
-    void setEncarcelado(boolean encarcelado /* = false*/){
+    void setEncarcelado(boolean encarcelado){
         this.encarcelado = encarcelado;
     }
     
     boolean tengoCartaLibertad(){
-        throw new UnsupportedOperationException("Sin implementar");
+        return cartaLibertad != null;
+    }
+    
+    boolean tengoSaldo(int cantidad){
+        return saldo > cantidad;
     }
     
     boolean venderPropiedad(Casilla casilla){
@@ -147,7 +185,7 @@ public class Jugador {
     
     @Override
     public String toString() {
-        return "Jugador{"+ "nombre=" + nombre + ", encarcelado=" + encarcelado + ", saldo=" + saldo + ", casillaActual=" + casillaActual + ", cartaLibertad=" + cartaLibertad + '}';
+        return "Jugador{"+ "nombre=" + nombre + ", encarcelado=" + encarcelado + ", saldo=" + saldo + ", capital=" + obtenerCapital() + ", casillaActual=" + casillaActual + ", cartaLibertad=" + cartaLibertad + '}';
     }
 }
 

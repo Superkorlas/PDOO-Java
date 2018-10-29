@@ -5,6 +5,8 @@
  */
 package modeloqytetet;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 
 /**
  *
@@ -14,26 +16,26 @@ public class Qytetet {
     private static final Qytetet instance = new Qytetet();
     private ArrayList<Sorpresa> mazo = new ArrayList<>();
     private Tablero tablero;
-    public static int MAX_JUGADORES;
-    static int NUM_SORPRESAS;
-    public static int NUM_CASILLAS;
-    static int PRECIO_LIBERTAD;
-    static int SALDO_SALIDA;
+    
+    public static final int MAX_JUGADORES = 4;
+    static final int NUM_SORPRESAS = 10;
+    public static final int NUM_CASILLAS = 20;
+    static final int PRECIO_LIBERTAD = 200;
+    static final int SALDO_SALIDA = 1000;
+        
+    EstadoJuego estadoJuego;
     Sorpresa cartaActual;
     ArrayList<Jugador> jugadores;
     Jugador jugadorActual;
     Dado dado;
+    Random r;
     
     private Qytetet(){
-        MAX_JUGADORES = 4;
-        NUM_SORPRESAS = 10;
-        NUM_CASILLAS = 20;
-        PRECIO_LIBERTAD = 200;
-        SALDO_SALIDA = 1000;
         cartaActual = null;
         dado = null;
         jugadorActual = null;
         jugadores = new ArrayList<>();
+        r = new Random();
     }
     
     public static Qytetet getInstance(){
@@ -93,7 +95,7 @@ public class Qytetet {
     }
     
     public int getValorDado() {
-        throw new UnsupportedOperationException("Sin implementar");
+        return dado.getValor();
     }
     
     public void hipotecarPropiedad(int numeroCasilla) {
@@ -122,7 +124,9 @@ public class Qytetet {
     }
     
     public void jugar() {
-        throw new UnsupportedOperationException("Sin implementar");
+        tirarDado();
+        Casilla destino = tablero.ObtenerCasillaFinal(jugadorActual.casillaActual,getValorDado());
+        mover(destino.getNumeroCasilla());
     }
     
     void mover(int numCasillaDestino) {
@@ -146,15 +150,18 @@ public class Qytetet {
     }
     
     public void obtenerRanking() {
-        throw new UnsupportedOperationException("Sin implementar");
+        Collections.sort(jugadores);
     }
     
     public int obtenerSaldoJugadorActual() {
-        throw new UnsupportedOperationException("Sin implementar");
+        return jugadorActual.saldo;
     }
     
     private void salidaJugadores() {
-        throw new UnsupportedOperationException("Sin implementar");
+        for(Jugador j: jugadores){
+            j.casillaActual = tablero.ObtenerCasillaNumero(0);
+        }
+        jugadorActual = jugadores.get(r.nextInt(jugadores.size()));
     }
     
     private void setCartaActual(Sorpresa cartaActual) {
@@ -162,11 +169,18 @@ public class Qytetet {
     }
     
     public void siguienteJugador() {
-        throw new UnsupportedOperationException("Sin implementar");
+        jugadorActual = jugadores.get((jugadores.indexOf(jugadorActual) + 1)%MAX_JUGADORES);
+        
+        if(jugadorActual.getEncarcelado()){
+            estadoJuego = EstadoJuego.JA_ENCARCELADOCONOPCIONDELIBERTAD;
+        }
+        else{
+            estadoJuego = EstadoJuego.JA_PREPARADO;
+        }
     }
     
     int tirarDado() {
-        throw new UnsupportedOperationException("Sin implementar");
+        return dado.tirar();
     }
     
     public boolean venderPropiedad(int numeroCasilla) {
@@ -176,7 +190,7 @@ public class Qytetet {
     //Aniadidos algunos \n
     @Override
     public String toString() {
-        return "\nQytetet{\n" + "\tmazo=" + mazo + "\n\ttablero=" + tablero + "\n\tcartaActual=" + cartaActual + "\n\tjugadores=" + jugadores + "\n\tjugadorActual=" + jugadorActual + "\n\tdado=" + dado + '}';
+        return "\nQytetet{\n\testadoJuego="+ estadoJuego + "\n\tmazo=" + mazo + "\n\ttablero=" + tablero + "\n\tcartaActual=" + cartaActual + "\n\tjugadores=" + jugadores + "\n\tjugadorActual=" + jugadorActual + "\n\tdado=" + dado + '}';
     }
     
     // No salen en el guión exactamente así ----------------------------------------------

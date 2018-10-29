@@ -57,7 +57,7 @@ public class Casilla {
     }
     
     boolean propietarioEncarcelado() {
-        throw new UnsupportedOperationException("Sin implementar");
+       return titulo.propietarioEncarcelado();
     }
 
     private void setTitulo(TituloPropiedad titulo) {
@@ -65,11 +65,11 @@ public class Casilla {
     }
     
     boolean soyEdificable(){
-        throw new UnsupportedOperationException("Sin implementar");
+        return tipo == TipoCasilla.CALLE;
     }
     
     boolean tengoPropietario(){
-        throw new UnsupportedOperationException("Sin implementar");
+        return titulo.tengoPropietario();
     }
 
     @Override
