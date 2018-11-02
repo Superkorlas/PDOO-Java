@@ -39,7 +39,20 @@ public class Jugador implements Comparable {
     }
     
     boolean comprarTituloPropiedad(){
-        throw new UnsupportedOperationException("Sin implementar");
+        boolean comprado = false;
+        int costeCompra = casillaActual.getCoste();
+        
+        if(costeCompra<saldo){
+            comprado = true;
+            
+            TituloPropiedad titulo = casillaActual.AsignarPropietario(this);
+            
+            propiedades.add(titulo);
+            
+            modificarSaldo(-costeCompra);
+        }
+        
+        return comprado;
     }
     
     int cuantasCasasHotelTengo(){
@@ -52,7 +65,12 @@ public class Jugador implements Comparable {
     }
     
     boolean deboPagarAlquiler(){
-        throw new UnsupportedOperationException("Sin implementar");
+        boolean esDeMiPropiedad     = this.esDeMiPropiedad(casillaActual.getTitulo());
+        boolean tienePropietario    = casillaActual.tengoPropietario();
+        boolean pEncarcelado        = casillaActual.propietarioEncarcelado();
+        boolean estaHipotecada      = casillaActual.getTitulo().getHipotecada();
+
+        return(!esDeMiPropiedad & tienePropietario & !pEncarcelado & !estaHipotecada);
     }
     
     Sorpresa devolverCartaLibertad(){
@@ -71,7 +89,8 @@ public class Jugador implements Comparable {
     }
     
     private void eliminarDeMisPropiedades(TituloPropiedad titulo){
-        throw new UnsupportedOperationException("Sin implementar");
+        propiedades.remove(titulo);
+        titulo.setPropietario(null);
     }
     
     private boolean esDeMiPropiedad(TituloPropiedad titulo){
@@ -110,12 +129,15 @@ public class Jugador implements Comparable {
         return saldo;
     }
     
-    boolean hipotecarPropiedad(TituloPropiedad titulo){
-        throw new UnsupportedOperationException("Sin implementar");
+    //! Era boolean pero que es lo que devolveriamos?
+    void hipotecarPropiedad(TituloPropiedad titulo){
+        int costeHipoteca=titulo.hipotecar();
+        modificarSaldo(costeHipoteca);
     }
     
     void irACarcel(Casilla casilla){
-        throw new UnsupportedOperationException("Sin implementar");
+        setCasillaActual(casilla);
+        setEncarcelado(true);
     }
     
     int modificarSaldo(int cantidad){
@@ -179,8 +201,12 @@ public class Jugador implements Comparable {
         return saldo > cantidad;
     }
     
-    boolean venderPropiedad(Casilla casilla){
-        throw new UnsupportedOperationException("Sin implementar");
+    //! Era boolean, pero que devuelve?
+    void venderPropiedad(Casilla casilla){
+        TituloPropiedad titulo = casilla.getTitulo();
+        eliminarDeMisPropiedades(titulo);
+        int precioVenta = titulo.calcularPrecioVenta();
+        modificarSaldo(precioVenta);
     } 
     
     @Override

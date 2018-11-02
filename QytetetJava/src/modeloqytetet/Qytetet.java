@@ -37,6 +37,10 @@ public class Qytetet {
         jugadores = new ArrayList<>();
         r = new Random();
     }
+
+    public void setEstadoJuego(EstadoJuego estadoJuego) {
+        this.estadoJuego = estadoJuego;
+    }
     
     public static Qytetet getInstance(){
         return instance;
@@ -47,7 +51,19 @@ public class Qytetet {
     }
     
     void actuarSiEnCasillaNoEdificable() {
-        throw new UnsupportedOperationException("Sin implementar");
+        setEstadoJuego(EstadoJuego.JA_PUEDESGESTIONAR);
+        Casilla casillaActual = jugadorActual.getCasillaActual();
+        
+        if(casillaActual.getTipo() == TipoCasilla.IMPUESTO){
+            jugadorActual.pagarImpuesto();
+        }
+        else if(casillaActual.getTipo() == TipoCasilla.JUEZ){
+            encarcelarJugador();
+        }
+        else if(casillaActual.getTipo() == TipoCasilla.SORPRESA){
+            mazo.remove(cartaActual);
+            setEstadoJuego(EstadoJuego.JA_CONSORPRESA);
+        }
     }
     
     public void aplicarSorpresa() {
@@ -59,7 +75,11 @@ public class Qytetet {
     }
     
     public boolean comprarTituloPropiedad() {
-        throw new UnsupportedOperationException("Sin implementar");
+        boolean comprado = jugadorActual.comprarTituloPropiedad();
+        if(comprado == true){
+            setEstadoJuego(EstadoJuego.JA_PUEDESGESTIONAR);
+        }
+        return comprado;
     }
     
     public boolean edificarCasa(int numeroCasilla) {
@@ -71,7 +91,20 @@ public class Qytetet {
     }
     
     private void encarcelarJugador() {
-        throw new UnsupportedOperationException("Sin implementar");
+        if(!jugadorActual.tengoCartaLibertad()){
+            Casilla casillaCarcel = tablero.getCarcel();
+            
+            jugadorActual.irACarcel(casillaCarcel);
+            
+            setEstadoJuego(EstadoJuego.JA_ENCARCELADO);
+        }
+        else{
+            Sorpresa carta = jugadorActual.devolverCartaLibertad();
+            
+            mazo.add(carta);
+            
+            setEstadoJuego(EstadoJuego.JA_PUEDESGESTIONAR);
+        }
     }
     
     public Sorpresa getCartaActual() {
@@ -99,7 +132,10 @@ public class Qytetet {
     }
     
     public void hipotecarPropiedad(int numeroCasilla) {
-        throw new UnsupportedOperationException("Sin implementar");
+        Casilla casilla;
+        casilla = tablero.ObtenerCasillaNumero(numeroCasilla);
+        jugadorActual.hipotecarPropiedad(casilla.getTitulo());
+        setEstadoJuego(EstadoJuego.JA_PUEDESGESTIONAR);
     }
     
     public void inicializarJuego(ArrayList<String> nombres) {
@@ -130,7 +166,21 @@ public class Qytetet {
     }
     
     void mover(int numCasillaDestino) {
-        throw new UnsupportedOperationException("Sin implementar");
+        Casilla casillaInicial = jugadorActual.getCasillaActual();
+        Casilla casillaFinal = tablero.ObtenerCasillaNumero(numCasillaDestino);
+        
+        jugadorActual.setCasillaActual(casillaFinal);
+        
+        if(numCasillaDestino < casillaInicial.getNumeroCasilla()){
+            jugadorActual.modificarSaldo(SALDO_SALIDA);
+        }
+        
+        if(casillaFinal.soyEdificable()){
+            actuarSiEnCasillaEdificable();
+        }
+        else{
+            actuarSiEnCasillaNoEdificable();
+        }
     }
     
     public Casilla obtenerCasillaJugadorActual() {
@@ -183,8 +233,11 @@ public class Qytetet {
         return dado.tirar();
     }
     
-    public boolean venderPropiedad(int numeroCasilla) {
-        throw new UnsupportedOperationException("Sin implementar");
+    //! Era boolean pero no se que es lo que deberia de devolver
+    public void venderPropiedad(int numeroCasilla) {
+        Casilla casilla = tablero.ObtenerCasillaNumero(numeroCasilla);
+        jugadorActual.venderPropiedad(casilla);
+        setEstadoJuego(EstadoJuego.JA_PUEDESGESTIONAR);
     }
 
     //Aniadidos algunos \n
