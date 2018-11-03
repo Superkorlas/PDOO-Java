@@ -35,7 +35,13 @@ public class Jugador implements Comparable {
     }
     
     boolean cancelarHipoteca(TituloPropiedad titulo){
-        throw new UnsupportedOperationException("Sin implementar");
+      int coste = titulo.calcularCosteCancelar();
+      boolean hipotecada = false;
+      if(coste < saldo){
+        modificarSaldo(-coste);
+        hipotecada = titulo.cancelarHipoteca();
+      }
+      return hipotecada;
     }
     
     boolean comprarTituloPropiedad(){

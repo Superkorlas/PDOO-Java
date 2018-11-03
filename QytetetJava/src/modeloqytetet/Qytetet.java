@@ -51,7 +51,7 @@ public class Qytetet {
     }
     
     void actuarSiEnCasillaNoEdificable() {
-        setEstadoJuego(EstadoJuego.JA_PUEDESGESTIONAR);
+        setEstadoJuego(EstadoJuego.JA_PUEDEGESTIONAR);
         Casilla casillaActual = jugadorActual.getCasillaActual();
         
         if(casillaActual.getTipo() == TipoCasilla.IMPUESTO){
@@ -71,13 +71,16 @@ public class Qytetet {
     }
     
     public boolean cancelarHipoteca(int numeroCasilla) {
-        throw new UnsupportedOperationException("Sin implementar");
+      Casilla casilla = tablero.ObtenerCasillaNumero(numeroCasilla);
+      boolean resultado = jugadorActual.cancelarHipoteca(casilla.getTitulo());
+      setEstadoJuego(EstadoJuego.JA_PUEDEGESTIONAR);
+      return resultado;
     }
     
     public boolean comprarTituloPropiedad() {
         boolean comprado = jugadorActual.comprarTituloPropiedad();
         if(comprado == true){
-            setEstadoJuego(EstadoJuego.JA_PUEDESGESTIONAR);
+            setEstadoJuego(EstadoJuego.JA_PUEDEGESTIONAR);
         }
         return comprado;
     }
@@ -103,7 +106,7 @@ public class Qytetet {
             
             mazo.add(carta);
             
-            setEstadoJuego(EstadoJuego.JA_PUEDESGESTIONAR);
+            setEstadoJuego(EstadoJuego.JA_PUEDEGESTIONAR);
         }
     }
     
@@ -135,7 +138,7 @@ public class Qytetet {
         Casilla casilla;
         casilla = tablero.ObtenerCasillaNumero(numeroCasilla);
         jugadorActual.hipotecarPropiedad(casilla.getTitulo());
-        setEstadoJuego(EstadoJuego.JA_PUEDESGESTIONAR);
+        setEstadoJuego(EstadoJuego.JA_PUEDEGESTIONAR);
     }
     
     public void inicializarJuego(ArrayList<String> nombres) {
@@ -237,7 +240,7 @@ public class Qytetet {
     public void venderPropiedad(int numeroCasilla) {
         Casilla casilla = tablero.ObtenerCasillaNumero(numeroCasilla);
         jugadorActual.venderPropiedad(casilla);
-        setEstadoJuego(EstadoJuego.JA_PUEDESGESTIONAR);
+        setEstadoJuego(EstadoJuego.JA_PUEDEGESTIONAR);
     }
 
     //Aniadidos algunos \n
