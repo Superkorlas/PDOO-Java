@@ -87,11 +87,33 @@ public class Jugador implements Comparable {
     }
     
     boolean edificarCasa(TituloPropiedad titulo){
-        throw new UnsupportedOperationException("Sin implementar");
+        boolean edificada = false;
+        int numCasas = titulo.getNumCasas();
+        if (numCasas < 4) {
+            int costeEdificarCasa = titulo.getPrecioEdificar();
+            boolean tengoSaldo = this.tengoSaldo(costeEdificarCasa);
+            if (tengoSaldo) {
+                titulo.edificarCasa();
+                this.modificarSaldo(-costeEdificarCasa);
+                edificada = true;
+            }
+        }
+        return edificada;
     }
     
     boolean edificarHotel(TituloPropiedad titulo){
-        throw new UnsupportedOperationException("Sin implementar");
+        boolean edificado = false;
+        int numCasas = titulo.getNumCasas();
+        if (numCasas < 4) {
+            int costeEdificarHotel = titulo.getPrecioEdificar();
+            boolean tengoSaldo = this.tengoSaldo(costeEdificarHotel);
+            if (tengoSaldo) {
+                titulo.edificarHotel();
+                this.modificarSaldo(-costeEdificarHotel);
+                edificado = true;
+            }
+        }
+        return edificado;
     }
     
     private void eliminarDeMisPropiedades(TituloPropiedad titulo){
@@ -176,7 +198,8 @@ public class Jugador implements Comparable {
     }
     
     void pagarAlquiler(){
-        throw new UnsupportedOperationException("Sin implementar");
+        int costeAlquiler = casillaActual.pagarAlquiler();
+        this.modificarSaldo(-costeAlquiler);
     }
     
     void pagarImpuesto(){
@@ -184,7 +207,11 @@ public class Jugador implements Comparable {
     }
     
     void pagarLibertad(int cantidad){
-        throw new UnsupportedOperationException("Sin implementar");
+        boolean tengoSaldo = this.tengoSaldo(cantidad);
+        if (tengoSaldo) {
+            this.setEncarcelado(false);
+            this.modificarSaldo(-cantidad);
+        }
     }
     
     void setCartaLibertad(Sorpresa carta){
