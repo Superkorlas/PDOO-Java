@@ -212,7 +212,8 @@ public class Qytetet {
     public void inicializarJuego(ArrayList<String> nombres) {
         inicializarJugadores(nombres);
         inicializarTablero();
-        inicializarCartasSorpresa();        
+        inicializarCartasSorpresa();
+        this.salidaJugadores(); // No es seguro que vaya aquí
     }   
     
     private void inicializarJugadores(ArrayList<String> nombres) {
@@ -264,19 +265,37 @@ public class Qytetet {
     }
     
     public Casilla obtenerCasillaJugadorActual() {
-        throw new UnsupportedOperationException("Sin implementar");
+        return jugadorActual.getCasillaActual();
     }
     
     public ArrayList<Casilla> obtenerCasillasTablero() {
-        throw new UnsupportedOperationException("Sin implementar");
+        return tablero.getCasillas();
     }
     
     public ArrayList<Integer> obtenerPropiedadesJugador() {
-        throw new UnsupportedOperationException("Sin implementar");
+        ArrayList<TituloPropiedad> propiedades = jugadorActual.getPropiedades();
+        ArrayList<Integer> resultado = new ArrayList();
+        for (TituloPropiedad propiedad : propiedades) {
+            for (Casilla casilla : tablero.getCasillas()) {
+                if (casilla.getTitulo() == propiedad) {
+                    resultado.add(casilla.getNumeroCasilla());
+                }
+            }
+        }
+        return resultado;
     }
     
     public ArrayList<Integer> obtenerPropiedadesJugadorSegunEstadoHipoteca(boolean estadoHipoteca) {
-        throw new UnsupportedOperationException("Sin implementar");
+        ArrayList<TituloPropiedad> propiedades = jugadorActual.obtenerPropiedades(estadoHipoteca);
+        ArrayList<Integer> resultado = new ArrayList();
+        for (TituloPropiedad propiedad : propiedades) {
+            for (Casilla casilla : tablero.getCasillas()) {
+                if (casilla.getTitulo() == propiedad) {
+                    resultado.add(casilla.getNumeroCasilla());
+                }
+            }
+        }
+        return resultado;
     }
     
     public void obtenerRanking() {
@@ -292,6 +311,7 @@ public class Qytetet {
             j.casillaActual = tablero.ObtenerCasillaNumero(0);
         }
         jugadorActual = jugadores.get(r.nextInt(jugadores.size()));
+        estadoJuego = EstadoJuego.JA_PREPARADO;
     }
     
     private void setCartaActual(Sorpresa cartaActual) {
@@ -299,7 +319,7 @@ public class Qytetet {
     }
     
     public void siguienteJugador() {
-        jugadorActual = jugadores.get((jugadores.indexOf(jugadorActual) + 1)%MAX_JUGADORES);
+        jugadorActual = jugadores.get((jugadores.indexOf(jugadorActual) + 1) % jugadores.size());
         
         if(jugadorActual.getEncarcelado()){
             estadoJuego = EstadoJuego.JA_ENCARCELADOCONOPCIONDELIBERTAD;

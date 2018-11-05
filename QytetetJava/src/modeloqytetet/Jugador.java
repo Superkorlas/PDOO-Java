@@ -71,12 +71,19 @@ public class Jugador implements Comparable {
     }
     
     boolean deboPagarAlquiler(){
-        boolean esDeMiPropiedad     = this.esDeMiPropiedad(casillaActual.getTitulo());
-        boolean tienePropietario    = casillaActual.tengoPropietario();
-        boolean pEncarcelado        = casillaActual.propietarioEncarcelado();
-        boolean estaHipotecada      = casillaActual.getTitulo().getHipotecada();
-
-        return(!esDeMiPropiedad & tienePropietario & !pEncarcelado & !estaHipotecada);
+        boolean esDeMiPropiedad = this.esDeMiPropiedad(casillaActual.getTitulo());
+        if (!esDeMiPropiedad) {
+            boolean tienePropietario = casillaActual.tengoPropietario();
+            if (tienePropietario) {
+                boolean pEncarcelado = casillaActual.propietarioEncarcelado();
+                if (!pEncarcelado) {
+                    boolean estaHipotecada = casillaActual.getTitulo().getHipotecada();
+                    return !(estaHipotecada);
+                }
+            }
+        }
+        return false;
+        //return(!esDeMiPropiedad & tienePropietario & !pEncarcelado & !estaHipotecada);
     }
     
     Sorpresa devolverCartaLibertad(){

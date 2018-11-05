@@ -17,11 +17,11 @@ public class PruebaQytetet {
     private static Qytetet juego = Qytetet.getInstance();
     private static final Scanner in = new Scanner(System.in);
     
-        /**
-     * @param args the command line arguments
-     */
+    /**
+    * @param args the command line arguments
+    */
     public static void main(String[] args)  {
-        ArrayList<String> nombres;
+    /*    ArrayList<String> nombres;
         // Nombres de jugadores
         System.out.println("============================================\n"+
                            "============BIENVENIDO A QYTETET============\n"+
@@ -33,30 +33,14 @@ public class PruebaQytetet {
         // Inicilizaciones
         juego.inicializarJuego(nombres);
 
-/*
-       for (Sorpresa it : juego.getMazo()) {
-           System.out.println(it.toString());
-       }
-       
-       for (Sorpresa it : Mayor0()) {
-           System.out.println(it.toString());
-       }
-              
-       for (Sorpresa it : TipoIrCasilla()) {
-           System.out.println(it.toString());
-       }
-                     
-       for (Sorpresa it : DevuelveTipo(TipoSorpresa.PAGARCOBRAR)) {
-           System.out.println(it.toString());
-       }
-*/
        // Acciones sobre el tablero
        System.out.println("Por desgracia esta partida la jugaran: ");
-       for(Jugador j: juego.getJugadores()){
-           System.out.println(j.toString());
-       }
+       mostrarEstadoJugadores();
        
        System.out.println(juego.toString());
+    */   
+       System.out.println("Pruebas de ejecución:\n");
+       ejecucionPruebasHastaSesion3();
     }
     
     
@@ -81,7 +65,36 @@ public class PruebaQytetet {
         return nombres;
     } 
     
-
+    static private void ejecucionPruebasHastaSesion3() {
+        ArrayList<String> nombres = new ArrayList();
+        nombres.add("Plata");
+        nombres.add("Robin");
+        nombres.add("Charo");
+        nombres.add("Angela");
+        
+        juego.inicializarJuego(nombres);
+        System.out.println("Jugador actual: " + juego.jugadorActual);
+        
+        // Probando movimientos
+        juego.mover(1);
+        juego.siguienteJugador();
+        juego.mover(2);
+        juego.siguienteJugador();
+        juego.mover(3);
+        juego.siguienteJugador();
+        juego.mover(4);
+        juego.siguienteJugador();
+        
+        // Mostramos resultado
+        mostrarEstadoJugadores();
+    }
+    
+    static private void mostrarEstadoJugadores() {
+        for(Jugador j: juego.getJugadores()){
+           System.out.println(j.toString());
+       }
+    }
+    
     static private ArrayList<Sorpresa> Mayor0(){
        ArrayList<Sorpresa> resultado = new ArrayList<>();
        
@@ -113,5 +126,5 @@ public class PruebaQytetet {
            }
        }
        return resultado;
-    }    
+    }
 }
