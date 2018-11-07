@@ -32,7 +32,7 @@ public class Qytetet {
     
     private Qytetet(){
         cartaActual = null;
-        dado = null;
+        dado = Dado.getInstance();
         jugadorActual = null;
         jugadores = new ArrayList<>();
         r = new Random();
@@ -247,7 +247,7 @@ public class Qytetet {
         mover(destino.getNumeroCasilla());
     }
     
-    void mover(int numCasillaDestino) {
+    public void mover(int numCasillaDestino) {
         Casilla casillaInicial = jugadorActual.getCasillaActual();
         Casilla casillaFinal = tablero.ObtenerCasillaNumero(numCasillaDestino);
         
