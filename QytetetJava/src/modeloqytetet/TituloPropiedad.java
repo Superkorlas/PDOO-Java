@@ -46,7 +46,7 @@ public class TituloPropiedad {
     }
     
     int calcularImporteAlquiler() {
-        int costeAlquiler = (alquilerBase + ((int)(numCasas*0.5 + numHoteles*0.2)));
+        int costeAlquiler = (alquilerBase + (alquilerBase * ((int)((numCasas*0.5) + numHoteles*2))));
         return costeAlquiler;
     }
     

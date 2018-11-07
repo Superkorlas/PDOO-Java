@@ -73,20 +73,42 @@ public class PruebaQytetet {
         nombres.add("Angela");
         
         juego.inicializarJuego(nombres);
-        System.out.println("Jugador actual: " + juego.jugadorActual);
+        //System.out.println("Jugador actual: " + juego.jugadorActual);
         
-        // Probando movimientos
-        juego.mover(1);
-        juego.siguienteJugador();
-        juego.mover(2);
-        juego.siguienteJugador();
-        juego.mover(3);
-        juego.siguienteJugador();
-        juego.mover(4);
-        juego.siguienteJugador();
+        //testMoverJugadores();
+        //testAplicarSorpresa();
+        testComprarCalleYCobrar();
         
         // Mostramos resultado
+        System.out.println("\n\n\n");
         mostrarEstadoJugadores();
+    }
+    
+    static private void testMoverJugadores() {
+        for (int i = 0; i < juego.getJugadores().size(); i++) {
+            juego.mover(i+1);
+            juego.siguienteJugador();
+        }
+    }
+    
+    static private void testAplicarSorpresa() {
+        for (int i = 0; i < juego.getJugadores().size(); i++) {
+            juego.mover(7);
+            juego.aplicarSorpresa();
+            System.out.println("Jugador actual: " + juego.jugadorActual);
+            System.out.println(juego.getCartaActual().toString() + "\n");
+            juego.siguienteJugador();
+        }  
+    }
+    
+    static private void testComprarCalleYCobrar() {
+        juego.mover(1);
+        juego.comprarTituloPropiedad();
+        System.out.println(juego.jugadorActual.getNombre() + juego.getJugadorActual().getPropiedades());
+        juego.siguienteJugador();
+        juego.mover(1);
+        juego.comprarTituloPropiedad();
+        System.out.println(juego.jugadorActual.getNombre() + juego.getJugadorActual().getPropiedades());
     }
     
     static private void mostrarEstadoJugadores() {

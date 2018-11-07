@@ -26,7 +26,7 @@ public class Casilla {
     // Casillas que NO son de tipo CALLE
     Casilla(int numeroCasilla, TipoCasilla tipo) {
         this.numeroCasilla = numeroCasilla;
-        coste = -1;
+        coste = 500;
         this.tipo = tipo;
         this.titulo = null;
     }
