@@ -39,6 +39,7 @@ public class MainTest {
         //testAplicarSorpresa();
         //testComprarCalleYCobrar();
         //testEdificarCasaYCobrar();
+        //testEdificarHotelYCobrar();
         //testHipotecarPropiedadEIntentarCobrar();
         //testCancelarHipotecaYCobrar();
         //testJugadorEncarceladoNoCobra();*/
@@ -73,6 +74,19 @@ public class MainTest {
         juego.mover(1);
         juego.comprarTituloPropiedad();
         juego.edificarCasa(juego.getJugadorActual().getCasillaActual().getNumeroCasilla());
+        System.out.println(juego.jugadorActual.getNombre() + juego.getJugadorActual().getPropiedades());
+        juego.siguienteJugador();
+        juego.mover(1);
+    }
+    
+    static private void testEdificarHotelYCobrar() {
+        juego.mover(1);
+        juego.comprarTituloPropiedad();
+        juego.edificarCasa(juego.getJugadorActual().getCasillaActual().getNumeroCasilla());
+        juego.edificarCasa(juego.getJugadorActual().getCasillaActual().getNumeroCasilla());
+        juego.edificarCasa(juego.getJugadorActual().getCasillaActual().getNumeroCasilla());
+        juego.edificarCasa(juego.getJugadorActual().getCasillaActual().getNumeroCasilla());
+        juego.edificarHotel(juego.getJugadorActual().getCasillaActual().getNumeroCasilla());
         System.out.println(juego.jugadorActual.getNombre() + juego.getJugadorActual().getPropiedades());
         juego.siguienteJugador();
         juego.mover(1);
