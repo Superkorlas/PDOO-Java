@@ -111,7 +111,8 @@ public class Jugador implements Comparable {
     boolean edificarHotel(TituloPropiedad titulo){
         boolean edificado = false;
         int numCasas = titulo.getNumCasas();
-        if (numCasas >= 4) {
+        int numHoteles = titulo.getNumHoteles();
+        if ((numCasas >= 4) && (numHoteles < 4)) {
             int costeEdificarHotel = titulo.getPrecioEdificar();
             boolean tengoSaldo = this.tengoSaldo(costeEdificarHotel);
             if (tengoSaldo) {
