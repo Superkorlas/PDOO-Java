@@ -28,6 +28,48 @@ public class Jugador implements Comparable {
         casillaActual = null;
     }
     
+    Jugador(Jugador j){
+        this.nombre = j.nombre;
+        this.encarcelado = j.encarcelado;
+        this.saldo = j.saldo;
+        propiedades = j.propiedades;
+        cartaLibertad = j.cartaLibertad;
+        casillaActual = j.casillaActual;
+    }
+    
+    protected Especulador convertirme(int fianza){
+        Especulador e = new Especulador(this, fianza);
+        return e;
+    }
+    
+    protected boolean deboIrACarcel(){
+        return tengoCartaLibertad();
+    }
+    
+    protected boolean puedoEdificarCasa(TituloPropiedad titulo){
+        
+        if(titulo.getNumCasas()==4){
+            return false;
+        }
+        else {
+            return saldo >= titulo.getPrecioEdificar();
+        }
+    }
+    
+    protected boolean puedoEdificarHotel(TituloPropiedad titulo){
+            
+        if(titulo.getNumHoteles()==4){
+            return false;
+        }
+        else if(titulo.getNumCasas() != 4){
+            return false;
+        }
+        else {
+            return saldo >= titulo.getPrecioEdificar();
+        }
+    }
+    
+        
     @Override
     public int compareTo(Object otroJugador){
         int otroCapital = ((Jugador) otroJugador).obtenerCapital();
@@ -95,31 +137,20 @@ public class Jugador implements Comparable {
     
     boolean edificarCasa(TituloPropiedad titulo){
         boolean edificada = false;
-        int numCasas = titulo.getNumCasas();
-        if (numCasas < 4) {
-            int costeEdificarCasa = titulo.getPrecioEdificar();
-            boolean tengoSaldo = this.tengoSaldo(costeEdificarCasa);
-            if (tengoSaldo) {
-                titulo.edificarCasa();
-                this.modificarSaldo(-costeEdificarCasa);
-                edificada = true;
-            }
+        if(puedoEdificarCasa(titulo)){
+            titulo.edificarCasa();
+            modificarSaldo(-titulo.getPrecioEdificar());
+            edificada = true;
         }
         return edificada;
     }
     
     boolean edificarHotel(TituloPropiedad titulo){
         boolean edificado = false;
-        int numCasas = titulo.getNumCasas();
-        int numHoteles = titulo.getNumHoteles();
-        if ((numCasas >= 4) && (numHoteles < 4)) {
-            int costeEdificarHotel = titulo.getPrecioEdificar();
-            boolean tengoSaldo = this.tengoSaldo(costeEdificarHotel);
-            if (tengoSaldo) {
-                titulo.edificarHotel();
-                this.modificarSaldo(-costeEdificarHotel);
-                edificado = true;
-            }
+        if(puedoEdificarHotel(titulo)){
+            titulo.edificarHotel();
+            modificarSaldo(-titulo.getPrecioEdificar());
+            edificado = true;
         }
         return edificado;
     }
@@ -254,6 +285,7 @@ public class Jugador implements Comparable {
     public String toString() {
         return "Jugador{"+ "nombre=" + nombre + ", encarcelado=" + encarcelado + ", saldo=" + saldo + ", capital=" + obtenerCapital() + ", casillaActual=" + casillaActual + ", cartaLibertad=" + cartaLibertad + '}';
     }
+
 }
 
 

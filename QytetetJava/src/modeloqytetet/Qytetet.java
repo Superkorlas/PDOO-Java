@@ -122,6 +122,11 @@ public class Qytetet {
                     }
                 }
             }
+            else if (cartaActual.getTipo() == TipoSorpresa.CONVERTIRME){
+                Especulador e = jugadorActual.convertirme(cartaActual.getValor());
+                jugadores.set(jugadores.indexOf(jugadorActual),e);
+                jugadorActual = e;
+            }
         }
     }
     
@@ -163,7 +168,7 @@ public class Qytetet {
     }
     
     private void encarcelarJugador() {
-        if(!jugadorActual.tengoCartaLibertad()){
+        if(!jugadorActual.deboIrACarcel()){
             Casilla casillaCarcel = tablero.getCarcel();
             
             jugadorActual.irACarcel(casillaCarcel);
@@ -366,6 +371,8 @@ public class Qytetet {
         mazo.add(new Sorpresa("Debes pagar tus deudas con el resto", 50, TipoSorpresa.PORJUGADOR));
         mazo.add(new Sorpresa("¡Tus casas y hoteles generan beneficios!", 100, TipoSorpresa.PORCASAHOTEL));
         mazo.add(new Sorpresa("Te toca pagar impuesto por tus casas y hoteles", 200, TipoSorpresa.PORCASAHOTEL));
+        mazo.add(new Sorpresa("Te conviertes en un especulador loquisimo", 3000, TipoSorpresa.CONVERTIRME));
+        mazo.add(new Sorpresa("Se te va la cabeza y te conviertes en especulador", 5000, TipoSorpresa.CONVERTIRME));
         Collections.shuffle(mazo);
     }
 }
