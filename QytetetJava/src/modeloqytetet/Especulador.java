@@ -69,7 +69,7 @@ public class Especulador extends Jugador{
     
     @Override
     public String toString(){
-        return (super.toString() + "Fianza: " + this.fianza);
+        return (super.toString() + ", Fianza: " + this.fianza);
     }
     
 }

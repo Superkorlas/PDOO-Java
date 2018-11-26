@@ -44,7 +44,7 @@ public class MainTest {
         //testCancelarHipotecaYCobrar();
         //testJugadorEncarceladoNoCobra();*/
     }
-/*  
+  
     static private void testMoverJugadores() {
         for (int i = 0; i < juego.getJugadores().size(); i++) {
             juego.mover(1);
@@ -52,7 +52,7 @@ public class MainTest {
         }
     }
 
-    static private void testAplicarSorpresa() {
+    /*static private void testAplicarSorpresa() {
         for (int i = 0; i < juego.getJugadores().size(); i++) {
             juego.mover(7);
             juego.aplicarSorpresa();

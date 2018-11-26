@@ -21,7 +21,6 @@ public class PruebaQytetet {
     * @param args the command line arguments
     */
     public static void main(String[] args)  {
-    /*    ArrayList<String> nombres;
         // Nombres de jugadores
         System.out.println("============================================\n"+
                            "============BIENVENIDO A QYTETET============\n"+
@@ -29,18 +28,15 @@ public class PruebaQytetet {
                            "=========Alejandro de la Plata Ramos========\n"+
                            "===========Robin Costas del Moral===========\n"+
                            "============================================\n");
-        nombres = getNombreJugadores();
-        // Inicilizaciones
-        juego.inicializarJuego(nombres);
-
-       // Acciones sobre el tablero
-       System.out.println("Por desgracia esta partida la jugaran: ");
-       mostrarEstadoJugadores();
-       
-       System.out.println(juego.toString());
-    */   
+        ArrayList<String> nombres = new ArrayList();
+        nombres.add("Plata");
+        nombres.add("Robin");
+        nombres.add("Charo");
+        nombres.add("Angela");
+        juego.inicializarJuego(nombres);  
+      
        System.out.println("Pruebas de ejecución:\n");
-       ejecucionPruebasHastaSesion3();
+       pruebaConvertirme();
     }
     
     
@@ -167,6 +163,17 @@ public class PruebaQytetet {
         for(Jugador j: juego.getJugadores()){
            System.out.println(j.toString());
        }
+    }
+    
+        
+    static private void pruebaConvertirme() {
+        for (int i = 0; i < juego.getJugadores().size(); i++) {
+            juego.mover(7);
+            juego.aplicarSorpresa();
+            System.out.println("Jugador actual: " + juego.jugadorActual.toString());
+            System.out.println(juego.getCartaActual().toString() + "\n");
+            juego.siguienteJugador();
+        }  
     }
     
     static private ArrayList<Sorpresa> Mayor0(){
