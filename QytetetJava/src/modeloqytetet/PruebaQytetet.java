@@ -21,22 +21,17 @@ public class PruebaQytetet {
     * @param args the command line arguments
     */
     public static void main(String[] args)  {
-        // Nombres de jugadores
+        /*/ Nombres de jugadores
         System.out.println("============================================\n"+
                            "============BIENVENIDO A QYTETET============\n"+
                            "============================================\n"+
                            "=========Alejandro de la Plata Ramos========\n"+
                            "===========Robin Costas del Moral===========\n"+
                            "============================================\n");
-        ArrayList<String> nombres = new ArrayList();
-        nombres.add("Plata");
-        nombres.add("Robin");
-        nombres.add("Charo");
-        nombres.add("Angela");
-        juego.inicializarJuego(nombres);  
+        juego.inicializarJuego(getNombreJugadores());*/
       
        System.out.println("Pruebas de ejecución:\n");
-       pruebaConvertirme();
+       ejecucionPruebasHastaSesion4();
     }
     
     
@@ -59,15 +54,18 @@ public class PruebaQytetet {
         }
         
         return nombres;
-    } 
+    }
     
-    static private void ejecucionPruebasHastaSesion3() {
+    static private void InicializarEntornoParaTest() {
         ArrayList<String> nombres = new ArrayList();
         nombres.add("Plata");
         nombres.add("Robin");
         nombres.add("Charo");
         nombres.add("Angela");
-        juego.inicializarJuego(nombres);        
+        juego.inicializarJuego(nombres); 
+    }
+    
+    static private void ejecucionPruebasHastaSesion4() {
         EjecutarTest();
         // Mostramos resultado
         System.out.println("\n\n\n");
@@ -75,17 +73,19 @@ public class PruebaQytetet {
     }
     
     static private void EjecutarTest() {
-        //testMoverJugadores();
-        //testAplicarSorpresa();
-        //testComprarCalleYCobrar();
-        //testEdificarCasaYCobrar();
-        //testEdificarHotelYCobrar();
-        //testHipotecarPropiedadEIntentarCobrar();
-        //testCancelarHipotecaYCobrar();
-        //testJugadorEncarceladoNoCobra();
+        testMoverJugadores();
+        testAplicarSorpresa();
+        testComprarCalleYCobrar();
+        testEdificarCasaYCobrar();
+        testEdificarHotelYCobrar();
+        testHipotecarPropiedadEIntentarCobrar();
+        testCancelarHipotecaYCobrar();
+        testJugadorEncarceladoNoCobra();
     }
     
     static private void testMoverJugadores() {
+        System.out.println("\n\n\nTest mover jugadores");
+        InicializarEntornoParaTest();
         for (int i = 0; i < juego.getJugadores().size(); i++) {
             juego.mover(juego.tirarDado());
             juego.siguienteJugador();
@@ -93,6 +93,8 @@ public class PruebaQytetet {
     }
     
     static private void testAplicarSorpresa() {
+        System.out.println("\n\n\nTest aplicar sorpresa");
+        InicializarEntornoParaTest();
         for (int i = 0; i < juego.getJugadores().size(); i++) {
             juego.mover(7);
             juego.aplicarSorpresa();
@@ -103,6 +105,8 @@ public class PruebaQytetet {
     }
     
     static private void testComprarCalleYCobrar() {
+        System.out.println("\n\n\nTest comprar calle y cobrar");
+        InicializarEntornoParaTest();
         juego.mover(1);
         juego.comprarTituloPropiedad();
         System.out.println(juego.jugadorActual.getNombre() + juego.getJugadorActual().getPropiedades());
@@ -111,6 +115,8 @@ public class PruebaQytetet {
     }
     
     static private void testEdificarCasaYCobrar() {
+        System.out.println("\n\n\nTest edificar casa y cobrar");
+        InicializarEntornoParaTest();
         juego.mover(1);
         juego.comprarTituloPropiedad();
         juego.edificarCasa(juego.getJugadorActual().getCasillaActual().getNumeroCasilla());
@@ -120,6 +126,8 @@ public class PruebaQytetet {
     }
     
     static private void testEdificarHotelYCobrar() {
+        System.out.println("\n\n\nTest edificar hotel y cobrar");
+        InicializarEntornoParaTest();
         juego.mover(1);
         juego.comprarTituloPropiedad();
         juego.edificarCasa(juego.getJugadorActual().getCasillaActual().getNumeroCasilla());
@@ -133,6 +141,8 @@ public class PruebaQytetet {
     }
     
     static private void testHipotecarPropiedadEIntentarCobrar() {
+        System.out.println("\n\n\nTest hipotecar propiedad e intentar cobrar");
+        InicializarEntornoParaTest();
         juego.mover(1);
         juego.comprarTituloPropiedad();
         juego.hipotecarPropiedad(juego.getJugadorActual().getCasillaActual().getNumeroCasilla());
@@ -142,6 +152,8 @@ public class PruebaQytetet {
     }
     
     static private void testCancelarHipotecaYCobrar() {
+        System.out.println("\n\n\nTest cancelar hipoteca y cobrar");
+        InicializarEntornoParaTest();
         juego.mover(1);
         juego.comprarTituloPropiedad();
         juego.hipotecarPropiedad(juego.getJugadorActual().getCasillaActual().getNumeroCasilla());
@@ -152,6 +164,8 @@ public class PruebaQytetet {
     }
     
     static private void testJugadorEncarceladoNoCobra() {
+        System.out.println("\n\n\nTest encarcelar jugador y no cobra");
+        InicializarEntornoParaTest();
         juego.mover(1);
         juego.comprarTituloPropiedad();
         juego.mover(15); // movemos jugador a casilla de JUEZ para moverlo a la casilla de la carcel
@@ -159,14 +173,8 @@ public class PruebaQytetet {
         juego.mover(1);
     }
     
-    static private void mostrarEstadoJugadores() {
-        for(Jugador j: juego.getJugadores()){
-           System.out.println(j.toString());
-       }
-    }
-    
-        
-    static private void pruebaConvertirme() {
+    static private void testConvertirmeEspeculador() {
+        System.out.println("\n\n\nTest convertirme en especulador");
         for (int i = 0; i < juego.getJugadores().size(); i++) {
             juego.mover(7);
             juego.aplicarSorpresa();
@@ -174,6 +182,12 @@ public class PruebaQytetet {
             System.out.println(juego.getCartaActual().toString() + "\n");
             juego.siguienteJugador();
         }  
+    }
+    
+    static private void mostrarEstadoJugadores() {
+        for(Jugador j: juego.getJugadores()){
+           System.out.println(j.toString());
+       }
     }
     
     static private ArrayList<Sorpresa> Mayor0(){

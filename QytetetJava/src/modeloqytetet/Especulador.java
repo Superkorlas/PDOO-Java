@@ -19,7 +19,7 @@ public class Especulador extends Jugador{
     }
     
     protected void pagarImpuesto(int cantidad){
-        saldo -= casillaActual.getCoste()/2;
+        saldo -= ((Calle)casillaActual).getCoste()/2;
     }
     
     @Override

@@ -88,12 +88,12 @@ public class Jugador implements Comparable {
     
     boolean comprarTituloPropiedad(){
         boolean comprado = false;
-        int costeCompra = casillaActual.getCoste();
+        int costeCompra = ((Calle)casillaActual).getCoste();
         
         if(costeCompra<saldo){
             comprado = true;
             
-            TituloPropiedad titulo = casillaActual.AsignarPropietario(this);
+            TituloPropiedad titulo = ((Calle)casillaActual).AsignarPropietario(this);
             
             propiedades.add(titulo);
             
@@ -113,13 +113,13 @@ public class Jugador implements Comparable {
     }
     
     boolean deboPagarAlquiler(){
-        boolean esDeMiPropiedad = this.esDeMiPropiedad(casillaActual.getTitulo());
+        boolean esDeMiPropiedad = this.esDeMiPropiedad(((Calle)casillaActual).getTitulo());
         if (!esDeMiPropiedad) {
-            boolean tienePropietario = casillaActual.tengoPropietario();
+            boolean tienePropietario = ((Calle)casillaActual).tengoPropietario();
             if (tienePropietario) {
-                boolean pEncarcelado = casillaActual.propietarioEncarcelado();
+                boolean pEncarcelado = ((Calle)casillaActual).propietarioEncarcelado();
                 if (!pEncarcelado) {
-                    boolean estaHipotecada = casillaActual.getTitulo().getHipotecada();
+                    boolean estaHipotecada = ((Calle)casillaActual).getTitulo().getHipotecada();
                     return !(estaHipotecada);
                 }
             }
@@ -237,12 +237,12 @@ public class Jugador implements Comparable {
     }
     
     void pagarAlquiler(){
-        int costeAlquiler = casillaActual.pagarAlquiler();
+        int costeAlquiler = ((Calle)casillaActual).pagarAlquiler();
         this.modificarSaldo(-costeAlquiler);
     }
     
     void pagarImpuesto(){
-        saldo -= casillaActual.getCoste();
+        saldo -= ((Calle)casillaActual).getCoste();
     }
     
     void pagarLibertad(int cantidad){
@@ -275,7 +275,7 @@ public class Jugador implements Comparable {
     
     //! Era boolean, pero que devuelve?
     void venderPropiedad(Casilla casilla){
-        TituloPropiedad titulo = casilla.getTitulo();
+        TituloPropiedad titulo = ((Calle)casilla).getTitulo();
         eliminarDeMisPropiedades(titulo);
         int precioVenta = titulo.calcularPrecioVenta();
         modificarSaldo(precioVenta);
