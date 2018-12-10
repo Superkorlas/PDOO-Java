@@ -59,7 +59,7 @@ public class InterfazUsuarioQytetet {
         String valor = new String();
         do{
             valor=in.next();
-        }while(!(valoresCorrectos.contains(valor)) || (valoresCorrectos.isEmpty() && (valor != "")));
+        }while(!(valoresCorrectos.contains(valor)) || (valoresCorrectos.isEmpty() && (!valor.equals(""))));
         return valor;
     }
     

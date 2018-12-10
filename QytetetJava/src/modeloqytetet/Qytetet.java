@@ -192,7 +192,7 @@ public class Qytetet {
         return dado;
     }
     
-    Jugador getJugadorActual(){
+    public Jugador getJugadorActual(){
         return jugadorActual;
     }
     
