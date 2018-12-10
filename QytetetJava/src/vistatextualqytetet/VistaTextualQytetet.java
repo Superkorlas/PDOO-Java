@@ -15,7 +15,7 @@ import java.util.Scanner;
  */
 public class VistaTextualQytetet {
     
-    private static ControladorQytetet controlador;
+    private static ControladorQytetet controlador = ControladorQytetet.getInstance();
     
     public ArrayList<String> obtenerNombreJugadores() {
         ArrayList<String> nombres = new ArrayList<>();
@@ -27,6 +27,7 @@ public class VistaTextualQytetet {
         int numJugadores = Integer.parseInt(this.leerValorCorrecto(valoresCorrectos));
         System.out.println("Muy bien, habra " + numJugadores + " jugadores, ahora sus nombres:");
         valoresCorrectos.clear();
+        
         for(int i=1; i<(numJugadores+1); i++){
             System.out.print("Jugador" + i + ": ");
             String s = leerValorCorrecto(valoresCorrectos);
@@ -44,7 +45,7 @@ public class VistaTextualQytetet {
         String valor = new String();
         do{
             valor=in.next();
-        }while(!(valoresCorrectos.contains(valor)) || (valoresCorrectos.isEmpty() && (!valor.equals(""))));
+        }while(!((valoresCorrectos.contains(valor)) || valoresCorrectos.isEmpty()));
         return valor;
     }
     

@@ -24,6 +24,10 @@ public class ControladorQytetet {
         
     }
     
+    public static ControladorQytetet getInstance() {
+        return instance;
+    }
+    
     public void setNombreJugadores(ArrayList<String> nombreJugadores) {
         this.nombreJugadores = nombreJugadores;
     }
