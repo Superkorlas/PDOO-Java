@@ -6,8 +6,8 @@
 package controladorqytetet;
 
 import modeloqytetet.EstadoJuego;
-import modeloqytetet.MetodoSalirCarcel;
 import java.util.ArrayList;
+import modeloqytetet.MetodoSalirCarcel;
 
 /**
  *
@@ -34,6 +34,58 @@ public class ControladorQytetet {
     
     public ArrayList<Integer> obtenerOperacionesJuegoValidas() {
         ArrayList<Integer> operacionesValidas = new ArrayList();
+        if (modelo.getEstadoJuego() == null) {
+            operacionesValidas.add(OpcionMenu.INICIARJUEGO.ordinal());
+        } else {
+            operacionesValidas.add(OpcionMenu.MOSTRARJUGADORACTUAL.ordinal());
+            operacionesValidas.add(OpcionMenu.MOSTRARJUGADORES.ordinal());
+            operacionesValidas.add(OpcionMenu.MOSTRARTABLERO.ordinal());
+            operacionesValidas.add(OpcionMenu.TERMINARJUEGO.ordinal());
+            switch(modelo.getEstadoJuego()) {
+                case JA_CONSORPRESA:
+                    operacionesValidas.add(OpcionMenu.APLICARSORPRESA.ordinal());
+                    break;
+                case ALGUNJUGADORENBANCARROTA:
+                    operacionesValidas.add(OpcionMenu.OBTENERRANKING.ordinal());
+                    break;
+                case JA_PUEDESCOMPRAROGESTIONAR:
+                    operacionesValidas.add(OpcionMenu.PASARTURNO.ordinal());
+                    operacionesValidas.add(OpcionMenu.COMPRARTITULOPROPIEDAD.ordinal());
+                    if (!modelo.obtenerPropiedadesJugadorSegunEstadoHipoteca(false).isEmpty()) {
+                        operacionesValidas.add(OpcionMenu.HIPOTECARPROPIEDAD.ordinal());
+                        operacionesValidas.add(OpcionMenu.EDIFICARCASA.ordinal());
+                        operacionesValidas.add(OpcionMenu.EDIFICARHOTEL.ordinal());
+                        operacionesValidas.add(OpcionMenu.VENDERPROPIEDAD.ordinal());
+                    }
+                    if (!modelo.obtenerPropiedadesJugadorSegunEstadoHipoteca(true).isEmpty()) {
+                        operacionesValidas.add(OpcionMenu.CANCELARHIPOTECA.ordinal());
+                    }
+                    break;
+                case JA_PUEDEGESTIONAR:
+                    operacionesValidas.add(OpcionMenu.PASARTURNO.ordinal());
+                    if (!modelo.obtenerPropiedadesJugadorSegunEstadoHipoteca(false).isEmpty()) {
+                        operacionesValidas.add(OpcionMenu.HIPOTECARPROPIEDAD.ordinal());
+                        operacionesValidas.add(OpcionMenu.EDIFICARCASA.ordinal());
+                        operacionesValidas.add(OpcionMenu.EDIFICARHOTEL.ordinal());
+                        operacionesValidas.add(OpcionMenu.VENDERPROPIEDAD.ordinal());
+                    }
+                    if (!modelo.obtenerPropiedadesJugadorSegunEstadoHipoteca(true).isEmpty()) {
+                        operacionesValidas.add(OpcionMenu.CANCELARHIPOTECA.ordinal());
+                    }
+                    break;
+                case JA_PREPARADO:
+                    operacionesValidas.add(OpcionMenu.JUGAR.ordinal());
+                    break;
+                case JA_ENCARCELADO:
+                    operacionesValidas.add(OpcionMenu.PASARTURNO.ordinal());
+                    break;
+                case JA_ENCARCELADOCONOPCIONDELIBERTAD:
+                    operacionesValidas.add(OpcionMenu.INTENTARSALIRCARCELPAGANDOLIBERTAD.ordinal());
+                    operacionesValidas.add(OpcionMenu.INTENTARSALIRCARCELTIRANDODADO.ordinal());
+                    break; 
+            }
+        }
+        
         return operacionesValidas;
     }
     
@@ -108,6 +160,61 @@ public class ControladorQytetet {
                     break;
                 case CANCELARHIPOTECA:
                     modelo.cancelarHipoteca(casillaElegida);
+                    break;
+                case JUGAR:
+                    modelo.jugar();
+                    resultado = "Turno de: \n" + modelo.getJugadorActual();
+                    break;
+                case APLICARSORPRESA:
+                    resultado = modelo.getCartaActual().toString();
+                    modelo.aplicarSorpresa();
+                    break;
+                case INTENTARSALIRCARCELPAGANDOLIBERTAD:
+                    boolean haPodidoSalirCarcelPagando = modelo.intentarSalirCarcel(MetodoSalirCarcel.PAGANDOLIBERTAD);
+                    if (haPodidoSalirCarcelPagando) {
+                        resultado = "Has salido de la carcel.";
+                    } else {
+                        resultado = "No has conseguido salir de la carcel.";
+                    }
+                    break;
+                case INTENTARSALIRCARCELTIRANDODADO:
+                    boolean haPodidoSalirCarcelTirandoDado = modelo.intentarSalirCarcel(MetodoSalirCarcel.TIRANDODADO);
+                    if (haPodidoSalirCarcelTirandoDado) {
+                        resultado = "Has salido de la carcel.";
+                    } else {
+                        resultado = "No has conseguido salir de la carcel.";
+                    }
+                    break;
+                case COMPRARTITULOPROPIEDAD:
+                    modelo.comprarTituloPropiedad();
+                    break;
+                case HIPOTECARPROPIEDAD:
+                    modelo.hipotecarPropiedad(casillaElegida);
+                    break;
+                case EDIFICARCASA:
+                    boolean haPodidoEdificarCasa = modelo.edificarCasa(casillaElegida);
+                    if (haPodidoEdificarCasa) {
+                        resultado = "Casa edificada correctamente.";
+                    } else {
+                        resultado = "No puedes edificar casa.";
+                    }
+                    break;
+                case EDIFICARHOTEL:
+                    boolean haPodidoEdificarHotel = modelo.edificarHotel(casillaElegida);
+                    if (haPodidoEdificarHotel) {
+                        resultado = "Hotel edificado correctamente.";
+                    } else {
+                        resultado = "No puedes edificar hotel.";
+                    }
+                    break;
+                case VENDERPROPIEDAD:
+                    modelo.venderPropiedad(casillaElegida);
+                    break;
+                case PASARTURNO:
+                    modelo.siguienteJugador();
+                    break;
+                case OBTENERRANKING:
+                    resultado = modelo.obtenerRanking().toString();
                     break;
                 default:
                     break;

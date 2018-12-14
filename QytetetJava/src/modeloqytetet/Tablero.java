@@ -22,12 +22,6 @@ public class Tablero {
     private void Inicializar() {
         casillas = new ArrayList();
         
-        /*@TODO: 
-         * Diseñar y crear casillas.
-         * Al mismo tiempo, insertarlas en ArrayList casillas.
-         * Si es de tipo CALLE, crear también su correspondiente Titulo.
-         * Hacer que carcel apunte a la casilla de carcel.
-         */
         Casilla casillaSalida = new OtraCasilla(0, TipoCasilla.SALIDA);
         casillas.add(casillaSalida);
         

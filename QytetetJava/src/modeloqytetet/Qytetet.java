@@ -42,6 +42,10 @@ public class Qytetet {
         this.estadoJuego = estadoJuego;
     }
     
+    public EstadoJuego getEstadoJuego() {
+        return estadoJuego;
+    }
+    
     public static Qytetet getInstance(){
         return instance;
     }
@@ -283,8 +287,10 @@ public class Qytetet {
         ArrayList<Integer> resultado = new ArrayList();
         for (TituloPropiedad propiedad : propiedades) {
             for (Casilla casilla : tablero.getCasillas()) {
-                if (((Calle)casilla).getTitulo() == propiedad) {
-                    resultado.add(casilla.getNumeroCasilla());
+                if (casilla.getTipo() == TipoCasilla.CALLE) {
+                    if (((Calle)casilla).getTitulo() == propiedad) {
+                        resultado.add(casilla.getNumeroCasilla());
+                    }
                 }
             }
         }
@@ -296,16 +302,20 @@ public class Qytetet {
         ArrayList<Integer> resultado = new ArrayList();
         for (TituloPropiedad propiedad : propiedades) {
             for (Casilla casilla : tablero.getCasillas()) {
-                if (((Calle)casilla).getTitulo() == propiedad) {
-                    resultado.add(casilla.getNumeroCasilla());
+                if (casilla.getTipo() == TipoCasilla.CALLE) {
+                    //System.out.println("Test: " + casilla.toString());
+                    if (((Calle)casilla).getTitulo() == propiedad) {
+                        resultado.add(casilla.getNumeroCasilla());
+                    }
                 }
             }
         }
         return resultado;
     }
     
-    public void obtenerRanking() {
+    public ArrayList<Jugador> obtenerRanking() {
         Collections.sort(jugadores);
+        return jugadores;
     }
     
     public int obtenerSaldoJugadorActual() {
@@ -374,5 +384,18 @@ public class Qytetet {
         mazo.add(new Sorpresa("Te conviertes en un especulador loquisimo", 3000, TipoSorpresa.CONVERTIRME));
         mazo.add(new Sorpresa("Se te va la cabeza y te conviertes en especulador", 5000, TipoSorpresa.CONVERTIRME));
         Collections.shuffle(mazo);
+    }
+    
+    public void test() {
+        ArrayList<TituloPropiedad> propiedades = jugadorActual.getPropiedades();
+        for (TituloPropiedad propiedad : propiedades) {
+            for (Casilla casilla : tablero.getCasillas()) {
+                if (casilla.getTipo() == TipoCasilla.CALLE) {
+                    if (((Calle)casilla).getTitulo() == propiedad) {
+                        //resultado.add(casilla.getNumeroCasilla());
+                    }
+                }
+            }
+        }
     }
 }

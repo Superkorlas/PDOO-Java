@@ -184,7 +184,7 @@ public class Jugador implements Comparable {
         return encarcelado;
     }
     
-    String getNombre(){
+    public String getNombre(){
         return nombre;
     }
     
@@ -283,7 +283,7 @@ public class Jugador implements Comparable {
     
     @Override
     public String toString() {
-        return "Jugador{"+ "nombre=" + nombre + ", encarcelado=" + encarcelado + ", saldo=" + saldo + ", capital=" + obtenerCapital() + ", casillaActual=" + casillaActual + ", cartaLibertad=" + cartaLibertad + '}';
+        return "Jugador{"+ "nombre=" + nombre + ", encarcelado=" + encarcelado + ", saldo=" + saldo + ", capital=" + obtenerCapital() + ", casillaActual=" + casillaActual + ", cartaLibertad=" + cartaLibertad + "}\n";
     }
 
 }
