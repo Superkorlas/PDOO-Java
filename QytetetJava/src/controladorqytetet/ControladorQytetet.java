@@ -186,7 +186,12 @@ public class ControladorQytetet {
                     }
                     break;
                 case COMPRARTITULOPROPIEDAD:
-                    modelo.comprarTituloPropiedad();
+                    boolean haPodidoComprarPropiedad = modelo.comprarTituloPropiedad();
+                    if (haPodidoComprarPropiedad) {
+                        resultado = "Has comprado la propiedad.";
+                    } else {
+                        resultado = "No puedes comprar la propiedad.";
+                    }
                     break;
                 case HIPOTECARPROPIEDAD:
                     modelo.hipotecarPropiedad(casillaElegida);

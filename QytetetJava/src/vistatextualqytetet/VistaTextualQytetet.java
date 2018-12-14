@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package vistatextualqytetet;
-import modeloqytetet.*;
 import controladorqytetet.*;
 import java.util.ArrayList;
 import java.util.Collections;

@@ -371,7 +371,7 @@ public class Qytetet {
      *      InicializarCartas -> inicializarCartasSorpresa
      */
     protected void inicializarCartasSorpresa() {
-        /*mazo.add(new Sorpresa("De vuelta al pricipio, vuelves a la casilla de salida", 0, TipoSorpresa.IRACASILLA));
+        mazo.add(new Sorpresa("De vuelta al pricipio, vuelves a la casilla de salida", 0, TipoSorpresa.IRACASILLA));
         mazo.add(new Sorpresa("Que suerte, te vas a la carcel", tablero.getCarcel().getNumeroCasilla(), TipoSorpresa.IRACASILLA));
         mazo.add(new Sorpresa("Poca broma, te vas a la ultima casilla del juego", tablero.getCasillas().size()-1, TipoSorpresa.IRACASILLA));
         mazo.add(new Sorpresa("Felicidades maquina, recibes dinero por tu cumple", 50, TipoSorpresa.PAGARCOBRAR));
@@ -380,22 +380,9 @@ public class Qytetet {
         mazo.add(new Sorpresa("Todos te pagan", 100, TipoSorpresa.PORJUGADOR));
         mazo.add(new Sorpresa("Debes pagar tus deudas con el resto", 50, TipoSorpresa.PORJUGADOR));
         mazo.add(new Sorpresa("¡Tus casas y hoteles generan beneficios!", 100, TipoSorpresa.PORCASAHOTEL));
-        mazo.add(new Sorpresa("Te toca pagar impuesto por tus casas y hoteles", 200, TipoSorpresa.PORCASAHOTEL));*/
+        mazo.add(new Sorpresa("Te toca pagar impuesto por tus casas y hoteles", 200, TipoSorpresa.PORCASAHOTEL));
         mazo.add(new Sorpresa("Te conviertes en un especulador loquisimo", 3000, TipoSorpresa.CONVERTIRME));
         mazo.add(new Sorpresa("Se te va la cabeza y te conviertes en especulador", 5000, TipoSorpresa.CONVERTIRME));
         Collections.shuffle(mazo);
-    }
-    
-    public void test() {
-        ArrayList<TituloPropiedad> propiedades = jugadorActual.getPropiedades();
-        for (TituloPropiedad propiedad : propiedades) {
-            for (Casilla casilla : tablero.getCasillas()) {
-                if (casilla.getTipo() == TipoCasilla.CALLE) {
-                    if (((Calle)casilla).getTitulo() == propiedad) {
-                        //resultado.add(casilla.getNumeroCasilla());
-                    }
-                }
-            }
-        }
     }
 }
