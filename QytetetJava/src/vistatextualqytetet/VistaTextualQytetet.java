@@ -39,7 +39,7 @@ public class VistaTextualQytetet {
             if (!necesitaElegirCasilla || casillaElegida >= 0) {
                 System.out.println(controlador.realizarOperacion(operacionElegida, casillaElegida));
             }
-        } while (true);
+        } while (!controlador.isTerminarJuego());
     }
     
     public ArrayList<String> obtenerNombreJugadores() {

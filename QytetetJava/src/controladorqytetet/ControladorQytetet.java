@@ -20,6 +20,8 @@ public class ControladorQytetet {
     private modeloqytetet.Qytetet modelo = modeloqytetet.Qytetet.getInstance();
     private ArrayList<String> nombreJugadores;
     
+    private boolean terminarJuego = false;
+    
     private ControladorQytetet() {
         
     }
@@ -30,6 +32,10 @@ public class ControladorQytetet {
     
     public void setNombreJugadores(ArrayList<String> nombreJugadores) {
         this.nombreJugadores = nombreJugadores;
+    }
+    
+    public boolean isTerminarJuego() {
+        return terminarJuego;
     }
     
     public ArrayList<Integer> obtenerOperacionesJuegoValidas() {
@@ -148,6 +154,8 @@ public class ControladorQytetet {
                     modelo.inicializarJuego(nombreJugadores);
                     break;
                 case TERMINARJUEGO:
+                    terminarJuego = true;
+                    resultado = "Juego finalizado.";
                     break;
                 case MOSTRARJUGADORACTUAL:
                     resultado = modelo.getJugadorActual().toString();
@@ -219,6 +227,7 @@ public class ControladorQytetet {
                     modelo.siguienteJugador();
                     break;
                 case OBTENERRANKING:
+                    terminarJuego = true;
                     resultado = modelo.obtenerRanking().toString();
                     break;
                 default:
